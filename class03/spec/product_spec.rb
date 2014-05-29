@@ -3,13 +3,15 @@ require 'spec_helper.rb'
 describe Product do
 
 	before :each do
-		product = Product.new "Nexus 5", 399.0, :smartphone
+		@product = Product.new "Manzana", 9.99, :fruta
 	end
 
 	describe "When creating a new a product" do
 		context "With valid parameters" do
-			it "should take 3 parameters and return a product object"
-				expect(product).to be_kind_of(Product)
+			it "should take 3 parameters and return a product object" do
+					expect(@product).to be_kind_of(Product)
+			end
+		end
 	end
 
 	describe "#title" do
