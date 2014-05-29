@@ -6,7 +6,7 @@ class Order
 	def initialize (file_path="")
 	  	# loading or not loading should be the key here.
         @products = []
-        if file_path.empty?
+        unless file_path.empty?
             File.open(file_path, "r").each do |product|
                 products << YAML::load(product)
             end
