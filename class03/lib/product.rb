@@ -4,7 +4,9 @@ class Product
 	# where title is a String
 	# where price is a Float
 	# where category is a Symbol
-  attr_accessor :title, :price , :category
+  attr_accessor :title
+  attr_accessor :price
+  attr_accessor :category
 
   def initialize (title, price, category)
     raise TypeError unless title.is_a? String
@@ -13,7 +15,5 @@ class Product
     @title = title
     @price = price
     @category = category
-
   end
-
 end
