@@ -4,5 +4,9 @@ class Product
 	# where title is a String
 	# where price is a Float
 	# where category is a Symbol
+  attr_accessor :title, :price , :category
+
+  def initialize (title, price, category)
+  end
 
 end
