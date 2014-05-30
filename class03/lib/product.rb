@@ -4,6 +4,7 @@ class Product
 	# where title is a String
 	# where price is a Float
 	# where category is a Symbol
+  include Comparable
   attr_accessor :title
   attr_accessor :price
   attr_accessor :category
@@ -15,5 +16,9 @@ class Product
     @title = title
     @price = price
     @category = category
+  end
+
+  def <=> (other)
+    [self.title, self.price, self.category] <=> [other.title, other.price, other.category]
   end
 end
