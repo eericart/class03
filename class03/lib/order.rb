@@ -1,3 +1,6 @@
+require 'yaml'
+require_relative 'product.rb'
+
 class Order
 	attr_accessor :products
 
@@ -5,12 +8,7 @@ class Order
 
 	def initialize (file_path="")
 	  	# loading or not loading should be the key here.
-        @products = []
-        unless file_path.empty?
-            File.open(file_path, "r").each do |product|
-                products << YAML::load(product)
-            end
-        end
+        @products = !file_path.empty? ? YAML.load_file(file_path) : []
     end
 
     def filter_by_category (category)
@@ -20,12 +18,15 @@ class Order
 
     def filter_by_price (begin_price, final_price)
     	# Perhaps the select method could work here too!
-        products.select {|product| product.pirce >= begin_price and product.price <= final_price }
+        products.select {|product| product.price >= begin_price and product.price <= final_price}
+
     end
 
     def add_product (title, price, category)
       # Remember stacks & queues? Pushing might be the answer.
-      products.push(Product.new title, price, category)
+      new_product = Product.new title, price, category
+      products.push(new_product)
+      new_product
     end
 
     def get_product
@@ -34,9 +35,9 @@ class Order
         products.select {|product| product.title == title }.first
     end
 
-    def save
-        File.open "products.yml", 'w' do |f|
-           f.write YAML::dump products
-        end
+    def save (file_path)
+      File.open file_path, 'w' do |f|
+        f.write YAML::dump products
+      end
     end
 end
