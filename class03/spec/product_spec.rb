@@ -5,7 +5,7 @@ describe Product do
 	before :all do
 		@product = Product.new "Manzana", 9.99, :fruta
 	end
-
+  subject {@product}
 	describe "When creating a new a product" do
 		context "With valid parameters" do
 			it "should take 3 parameters and return a product object" do
@@ -26,9 +26,10 @@ describe Product do
 	end
 
 	describe "#price" do
-		it "should return the correct price"
+		it "should return the correct price" do
 			# the price of the object created in the each block is asserted.
 			expect(@product.price).to eql(9.99)
+		end
 		it "should be a float" do
 			# the price should be of the class Float
 			expect(@product.price).to be_kind_of(Float)
@@ -36,12 +37,13 @@ describe Product do
 	end
 
 	describe "#category" do
-		it "should return the correct category"
+		it "should return the correct category" do
 			# the category of the object created in the each block is asserted.
 			expect(@product.category).to eql(:fruta)
+		end
 		it "should be a symbol" do
 			# the category should be of the class Symbol
-			expect(@product.category).to be_kind_of(:Symbol)
+			expect(@product.category).to be_kind_of(Symbol)
 		end
 	end
 
