@@ -27,7 +27,7 @@ describe Order do
 			it "has no products" do
 				# A new order instantiated with no yml file should have 0 products
 				orden = Order.new
-				expect(orden.products.empty?).to be_true
+				expect(orden.products).to be_empty
 			end
 		end
 
@@ -62,7 +62,7 @@ describe Order do
 			# Save the order to a file, retrieve it and then compare with the previous
 			@order.save("test_products.yml")
 			orden = Order.new "test_products.yml"
-			@order.products.should =~ orden.products
+			expect(@order.products).to match_array(orden.products)
 		end
 	end
 
