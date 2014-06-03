@@ -8,24 +8,24 @@ class Order
 
 	def initialize (file_path="")
 	  	# loading or not loading should be the key here.
-        @products = !file_path.empty? ? YAML.load_file(file_path) : []
+      @products = !file_path.empty? ? YAML.load_file(file_path) : []
     end
 
     def filter_by_category (category)
     	# Perhaps you could use the select method for arrays :)
-        products.select {|product| product.category == category }
+      products.select {|product| product.category == category }
     end
 
     def filter_by_price (begin_price, final_price)
     	# Perhaps the select method could work here too!
-        products.select {|product| product.price >= begin_price and product.price <= final_price}
+      products.select {|product| product.price.between? begin_price,final_price}
 
     end
 
     def add_product (title, price, category)
       # Remember stacks & queues? Pushing might be the answer.
       new_product = Product.new title, price, category
-      products.push(new_product)
+      products << new_product
       new_product
     end
 
